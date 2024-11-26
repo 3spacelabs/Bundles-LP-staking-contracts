@@ -7,11 +7,11 @@ function delay(ms: number) {
 }
 
 async function deploy() {
-    const reward_amounts = ["750"];
-    const durations = [5184000];
-    const names = ['60 day lock']
+    const reward_amounts = ["500", "750", "1000"];
+    const durations = [5184000, 7776000, 15552000];
+    const names = ['60 day lock', '90 day lock', '180 day lock']
 
-    const START_TIME = 1709726400 // Math.round(Date.now() / 1000) + 300; // 5 minutes from now while txns propagate
+    const START_TIME = 1732665600 // Math.round(Date.now() / 1000) + 300; // 5 minutes from now while txns propagate
     console.log("Start Time set to:", START_TIME);
 
     const stakingToken_address = '0xeFbe61Cd97eD5419e435Da5C6b14d0C982653826';
@@ -28,7 +28,8 @@ async function deploy() {
 
     console.log("Deploying contracts with the account:", deployer.address);
     console.log("Account balance:", ethers.formatEther(balance.toString()), "$MATIC\n");
-
+    await delay(10000);
+    
     var pools = [];
 
     for (var i = 0; i < reward_amounts.length; i++) {
